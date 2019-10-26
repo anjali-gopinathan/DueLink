@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+		
+		<!--Specify Google Calendar's app ID (from cloud.google.com)-->
+		<meta name="google-signin-client_id" content="289076913955-tu6bjvsklq80tb18skfqkq5p04mgeadi.apps.googleusercontent.com">
+		<!-- Our google calendar id (not for sign-in): AIzaSyDcGfUFqweAwG0y1cqUtFVEIWVcDRuZgd4 -->
+		
+		<br><br><h1>DueLink</h1>
+	</head>
+	
+	<body><br><br>Syllabus uploader
+	<button>Click here to upload a csv syllabus file</button><br><br>
+	<div class="g-signin2" data-onsuccess="onSignIn"></div>
+	</body>
+	
+	<style>
+		
+	</style>
+	
+	<!-- For jQuery: https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js OR jquery-3.4.1.js-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	
+	<!--The following loads the Google Platform library-->
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+	<!--To use jquery features like fadein-->
+	<script>
+		function onSignIn(googleUser) {
+		  var profile = googleUser.getBasicProfile();
+		  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+		  console.log('Name: ' + profile.getName());
+		  console.log('Image URL: ' + profile.getImageUrl());
+		  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+		}
+		$(document).ready( function(){
+			
+			$("button").fadeIn(3000);				
+			
+		});
+
+	</script>
+</html>
