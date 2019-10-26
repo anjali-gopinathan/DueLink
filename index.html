@@ -1,20 +1,29 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
-		</script>
-		<!-- https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js OR jquery-3.4.1.js-->
+		<!-- For jQuery: https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js OR jquery-3.4.1.js-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		
+		<!--The following loads the Google Platform library-->
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+		<!--To use jquery features like fadein-->
 		<script>
 			$(document).ready( function{
 				$("button").fadeIn(3000);
 			});
 		</script>
 		
-		<br><br>DueLink
+		<!--Specify Google Calendar's app ID (from cloud.google.com)-->
+		<meta name="google-signin-client_id" content="AIzaSyDcGfUFqweAwG0y1cqUtFVEIWVcDRuZgd4.apps.googleusercontent.com">
+
+		
+		<br><br><h1>DueLink</h1>
 	</head>
 	
 	<body><br><br>Syllabus uploader
 	<button>Click here to upload a csv syllabus file</button>
+	<div class="g-signin2" data-onsuccess="onSignIn"></div>
 	</body>
 	
 	<style>
