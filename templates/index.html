@@ -11,8 +11,27 @@
 	</head>
 	
 	<body><br><br>Syllabus uploader
-	<button>Click here to upload a csv syllabus file</button><br><br>
+
+	<input type="file" id="browse" name="fileupload" style="display: none" onChange="Handlechange();"/>
+	<input type="hidden" id="filename" readonly="true"/>
+
+	<input id='fileid' type='file'></input>
+	
+	<!-- <button id='uploadfile' onchange="updatelabel()">upload a csv syllabus file</button> -->
+	
+	<!--input title="Choose a csv file" id="uploadFile" onchange="updateLabel()"-->
+	<label id="fileLabel"></label><br><br>
 	<div class="g-signin2" data-onsuccess="onSignIn"></div>
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="/__/firebase/7.2.2/firebase-app.js"></script>
+
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+		 https://firebase.google.com/docs/web/setup#available-libraries -->
+	<script src="/__/firebase/7.2.2/firebase-analytics.js"></script>
+
+	<!-- Initialize Firebase -->
+	<script src="/__/firebase/init.js"></script>
+	
 	</body>
 	
 	<style>
@@ -25,6 +44,41 @@
 	<!--The following loads the Google Platform library-->
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 
+	<script>
+		<!-- document.getElementById('uploadFile').addEventListener('click', openDialog); -->
+		
+		function openDialog() {
+			document.getElementById('fileid').click();
+		}
+		function Handlechange(){
+			var fileinput = document.getElementById("browse");
+			var textinput = document.getElementById("filename");
+			textinput.value = fileinput.value;
+			console.log(textinput.value);
+			//document.getElementById('fileLabel').innerHTML = textinput.value;
+		}
+		function updateLabel(){
+			var label = document.getElementbyId('fileLabel');
+			if(label.value == ""){
+				
+			}
+			else{
+			
+			}
+			
+		}
+		<!-- function uploadFile(fileData) { -->
+		<!-- console.log('asdf'); -->
+		<!-- } -->
+		
+		$(document).ready(function() {
+			$('input#fileid').on('change', function() {
+				console.log($(this)[0].files[0]);
+			});
+		});
+		
+
+	</script>
 	<!--To use jquery features like fadein-->
 	<script>
 		function onSignIn(googleUser) {
@@ -179,7 +233,7 @@
 		});
 	}
 	function createEvent() {
-		
+		//events.insert(
 	}
 	</script>
 </html>
