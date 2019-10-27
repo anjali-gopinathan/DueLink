@@ -10,7 +10,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgba(253, 170, 75, 0.979);
+  background-color: rgba(7, 7, 7, 0.918);
+  color: rgb(255, 255, 255);
 
 }
 h1 {
@@ -39,3 +40,14 @@ input[type="button"]{
   display: inline-block; 
   font-size: 16px; 
 } 
+button{
+  width: 100px; 
+    background: #4CAF50; 
+    border: 1px solid #222; 
+    padding: 10px 20px; 
+    color: black; 
+    text-align: center; 
+    text-decoration: none; 
+    display: inline-block; 
+    font-size: 16px;
+}
