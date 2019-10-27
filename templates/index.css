@@ -1,0 +1,22 @@
+
+
+body {
+  background-color: powderblue;
+}
+h1 {
+  color: blue;
+}
+p {
+  color: red;
+}
+input[type="button"]{ 
+  width: 100px; 
+  background: #4CAF50; 
+  border: 1px solid #222; 
+  padding: 10px 20px; 
+  color: black; 
+  text-align: center; 
+  text-decoration: none; 
+  display: inline-block; 
+  font-size: 16px; 
+} 
