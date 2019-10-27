@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-    <link rel="stylesheet" href="index.css" type="text/css">
+    <!-- <link rel="stylesheet" href="index.css" type="text/css"> -->
     <br><br><h1>DueLink</h1>
 	</head>
 	
@@ -43,6 +43,19 @@
 
 
   <!-- START OF SCRIPT IMPORTS -->
+    
+
+
+
+
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+
+
+
+
+
+
+
 
   	<!-- For jQuery: https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js OR jquery-3.4.1.js-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -82,19 +95,110 @@
       // access file upon upload and then parse its
 			$('input#fileid').on('change', function() {
         console.log($(this)[0].files[0]);
-        
-        //parse
+        d3.csv().then( function (data){
+          var allData = data[0];
+          console.log(allData);
+        });
+
+        // var event = [][]; // The CSV will be a 2D array of strings with some number of rows, and 8 columns
+        // var num_rows;
+
+        // //parse
+        // for(let i = 0; i < num_rows; i++) {
+
+        //   var summary = event[i][0];
+        //   var location = event[i][1];
+        //   var description = event[i][2];
+        //   var year = event[i][3];
+        //   var month = event[i][4];
+        //   var day = event[i][5];
 
 
-        //foreach one call insert
+
+        //   var startTime = event[i][6];
+        //   var offsetFromStart = '';
+
+        //   var endTime = event[i][7];
+        //   var offsetFromEnd = '';
+
+
+
+        //   var recurrences = event[i][8];
+
+        //   var activity = {
+        //     'summary': summary,
+        //     'location': location,
+        //     'description': description,
+        //     'start': {
+        //       'dateTime': year +'-'+ month +'-'+ day +'T'+ startTime +'-'+ offsetFromStart,
+        //       'timeZone': 'America/Los_Angeles'
+        //     },
+        //     'end': {
+        //       'dateTime': year +'-'+ month +'-'+ day +'T'+ endTime +'-'+ offsetFromEnd,
+        //       'timeZone': 'America/Los_Angeles'
+        //     },
+        //     'recurrence': [
+        //       'RRULE:FREQ=DAILY;COUNT='+recurrences
+        //     ],
+        //     'reminders': {
+        //       'useDefault': false,
+        //       'overrides': [
+        //         {'method': 'email', 'minutes': 24 * 60},
+        //         {'method': 'popup', 'minutes': 10}
+        //       ]
+        //     }
+        //   };
+
+        //   var request = gapi.client.calendar.events.insert({
+        //     'calendarId': 'primary',
+        //     'resource': activity
+        //   });
+
+        //   request.execute(function(event) {
+        //     appendPre('Congrats added ' + (i+1) + ' files');
+        //   });
+
+        // }
+
       });
       
+
       // create test event upon button click
       $('#testCreateEvent').click(function() {
+        // var year = '2019'
+        // var event = {
+        //   'summary': 'test',
+        //   'location': '',
+        //   'description': 'A chance to hear more about Google\'s developer products.',
+        //   'start': {
+        //     'dateTime': year + '-10-28T07:00:00-10:00',
+        //     'timeZone': 'America/Los_Angeles'
+        //   },
+        //   'end': {
+        //     'dateTime': '2019-10-28T17:00:00-00:00',
+        //     'timeZone': 'America/Los_Angeles'
+        //   },
+        //   'recurrence': [
+        //     'RRULE:FREQ=DAILY;COUNT=1'
+        //   ],
+        //   'reminders': {
+        //     'useDefault': false,
+        //     'overrides': [
+        //       {'method': 'email', 'minutes': 24 * 60},
+        //       {'method': 'popup', 'minutes': 10}
+        //     ]
+        //   }
+        // };
 
-        // gapi.client.calendar.events.insert({
-
+        // var request = gapi.client.calendar.events.insert({
+        //   'calendarId': 'primary',
+        //   'resource': event
         // });
+
+        // request.execute(function(event) {
+        //   appendPre('THIS WORKS!');
+        // });
+
       });
 		});
 		
@@ -127,8 +231,10 @@
 
     // Authorization scopes required by the API; multiple scopes can be
     // included, separated by spaces.
-    var SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
-
+    var SCOPES = "https://www.googleapis.com/auth/calendar";
+    // https://www.googleapis.com/auth/calendar
+    // https://www.googleapis.com/auth/calendar.events
+    // https://www.googleapis.com/auth/calendar.readonly
     var authorizeButton = document.getElementById('authorize_button');
     var signoutButton = document.getElementById('signout_button');    
 
