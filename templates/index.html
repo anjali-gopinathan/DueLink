@@ -21,7 +21,8 @@
 	<input type="file" id="browse" name="fileupload" style="display:none" onChange="Handlechange();"/>
 	<input type="hidden" id="filename" readonly="true"/>
 
-	<input id='fileid' type='file'></input>
+  <input id='fileid' type='file'></input>
+  <pre id="fileDisplayArea"></pre>
 	
 	<!-- <button id='uploadfile' onchange="updatelabel()">upload a csv syllabus file</button> -->
 	
@@ -42,9 +43,9 @@
   <!-- <button><a href="#" onclick="signOut();">Sign out</a></button> -->
 
 
-  <!-- <br><br>
+  <br><br>
   <button id="testCreateEvent">Create test event</button>
-   -->
+  
   
   <br><br>
   <button id="authorize_button" style="display: none;">Sign in</button>
@@ -56,24 +57,90 @@
   <!-- START OF SCRIPT IMPORTS -->
     
 
-
-
-
-
-
-
-
-
-
-
   	<!-- For jQuery: https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js OR jquery-3.4.1.js-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	
 	<!--The following loads the Google Platform library-->
-	<script src="https://apis.google.com/js/platform.js" async defer></script>
-
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  
 	<script>
-		document.getElementById('uploadFile').addEventListener('click', upload, false);
+    var  csvArr = []
+    window.onload = function() {  
+        var fileInput = document.getElementById('fileid');
+        var fileDisplayArea = document.getElementById('fileDisplayArea');
+
+        fileInput.addEventListener('change', function(e) {
+            var file = fileInput.files[0];
+            var textType = /text.*/;
+            console.log(file.type)
+
+            if (true) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    fileDisplayArea.innerText = reader.result;
+                    csvArr  = reader.result.replace(/(\r\n|\n|\r)/gm, ',').split(',')
+
+                    for(let i = 0; i < csvArr.length - 1; i+=9) {
+          
+                      var summary = csvArr[i];
+                      var location = csvArr[i+1];
+                      var description = csvArr[i+2];
+                      var year = csvArr[i+3];
+                      var month = csvArr[i+4];
+                      var day = csvArr[i+5];
+                      var startTime = csvArr[i+6];
+                      var offsetFromStart = '';
+                      var endTime = csvArr[i+7];
+                      var offsetFromEnd = '';
+                      var recurrences = csvArr[i+8];
+
+                      var activity = {
+                        'summary': summary,
+                        'location': location,
+                        'description': description,
+                        'start': {
+                          'dateTime': year +'-'+ month +'-'+ day +'T'+ '09:00:00' +'-'+ '07:00',
+                          'timeZone': 'America/Los_Angeles'
+                        },
+                        'end': {
+                          'dateTime': year +'-'+ month +'-'+ day +'T'+ '17:00:00' +'-'+ '07:00',
+                          'timeZone': 'America/Los_Angeles'
+                        },
+                        'recurrence': [
+                          'RRULE:FREQ=DAILY;COUNT='+recurrences
+                        ],
+                        'reminders': {
+                          'useDefault': false,
+                          'overrides': [
+                            {'method': 'email', 'minutes': 24 * 60},
+                            {'method': 'popup', 'minutes': 10}
+                          ]
+                        }
+                      };
+
+                      var request = gapi.client.calendar.events.insert({
+                        'calendarId': 'primary',
+                        'resource': activity
+                      });
+
+                      request.execute(function(event) {
+                        appendPre('Congrats added an event');
+                      });
+
+                    }
+
+
+
+                }
+
+                reader.readAsText(file);    
+            } else {
+                fileDisplayArea.innerText = "File not supported!"
+            }
+        });
+      }
+		// <!-- document.getElementById('uploadFile').addEventListener('click', openDialog); -->
 		
 		function openDialog() {
 			document.getElementById('fileid').click();
@@ -104,90 +171,17 @@
       // access file upon upload and then parse its
 			$('input#fileid').on('change', function() {
         console.log($(this)[0].files[0]);
-      
-        //parse
-        function uploadFile(fileData){
-          console.log("enterd uploadFile");
-          var theFile = fileData.target.files[0];
-          var reader = new FileReader();
-          reader.readAsText(theFile);
-          reader.onload = function(event){
-            var csvData = event.target.result;
-              data = $.csv.toArrays(csvData);
-              if (data && data.length > 0) {
-                console.log('Imported -' + data.length + '- rows successfully!');
-              } else {
-                console.log('No data to import!');
-              }
-          };
-        }
-
-        // var event = [][]; // The CSV will be a 2D array of strings with some number of rows, and 8 columns
-        // var num_rows;
-
-        // //parse
-        // for(let i = 0; i < num_rows; i++) {
-
-        //   var summary = event[i][0];
-        //   var location = event[i][1];
-        //   var description = event[i][2];
-        //   var year = event[i][3];
-        //   var month = event[i][4];
-        //   var day = event[i][5];
-
-
-
-        //   var startTime = event[i][6];
-        //   var offsetFromStart = '';
-
-        //   var endTime = event[i][7];
-        //   var offsetFromEnd = '';
-
-
-
-        //   var recurrences = event[i][8];
-
-        //   var activity = {
-        //     'summary': summary,
-        //     'location': location,
-        //     'description': description,
-        //     'start': {
-        //       'dateTime': year +'-'+ month +'-'+ day +'T'+ startTime +'-'+ offsetFromStart,
-        //       'timeZone': 'America/Los_Angeles'
-        //     },
-        //     'end': {
-        //       'dateTime': year +'-'+ month +'-'+ day +'T'+ endTime +'-'+ offsetFromEnd,
-        //       'timeZone': 'America/Los_Angeles'
-        //     },
-        //     'recurrence': [
-        //       'RRULE:FREQ=DAILY;COUNT='+recurrences
-        //     ],
-        //     'reminders': {
-        //       'useDefault': false,
-        //       'overrides': [
-        //         {'method': 'email', 'minutes': 24 * 60},
-        //         {'method': 'popup', 'minutes': 10}
-        //       ]
-        //     }
-        //   };
-
-        //   var request = gapi.client.calendar.events.insert({
-        //     'calendarId': 'primary',
-        //     'resource': activity
-        //   });
-
-        //   request.execute(function(event) {
-        //     appendPre('Congrats added ' + (i+1) + ' files');
-        //   });
-
-        // }
+        console.log('I have got here')
+        
 
       });
       
 
       // create test event upon button click
-      $('#testCreateEvent').click(function() {
+      //$('#testCreateEvent').click(function() {
         // var year = '2019'
+        // var start_time = '00:00:00';
+        // var end_time = '';
         // var event = {
         //   'summary': 'test',
         //   'location': '',
@@ -221,7 +215,7 @@
         //   appendPre('THIS WORKS!');
         // });
 
-      });
+      //});
 		});
 		
 
@@ -434,7 +428,7 @@ ol{
 a{
   color: lightblue;
   
-  
+}
   </style>
 	</body>
 	
