@@ -2,7 +2,7 @@
 <html>
   <title> DueLink</title>
 	<head>
-    <link rel="stylesheet" href="index.css" type="text/css">
+    <link rel="stylesheet" href="./index.css" type="text/css">
     <!--Nunito: link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet"-->
     <link href="https://fonts.googleapis.com/css?family=Raleway:500&display=swap" rel="stylesheet">
     <h1>DueLink</h1>
@@ -106,10 +106,9 @@
       // access file upon upload and then parse its
 			$('input#fileid').on('change', function() {
         console.log($(this)[0].files[0]);
-        d3.csv().then( function (data){
-          var allData = data[0];
-          console.log(allData);
-        });
+      
+        //parse
+
 
         // var event = [][]; // The CSV will be a 2D array of strings with some number of rows, and 8 columns
         // var num_rows;
@@ -356,6 +355,75 @@
     onload="this.onload=function(){};handleClientLoad()"
     onreadystatechange="if (this.readyState === 'complete') this.onload()">
   </script>
+  <style>
+  
+#root{ 
+  text-align:center; 
+} 
+
+body { 
+  text-align: center;
+  margin: 5%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Raleway', "Nunito", "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: rgba(7, 7, 7, 0.918);
+  color: rgb(255, 255, 255);
+
+}
+h1 {
+  color: rgba(102, 149, 236, 0.836);
+  font-size: 42px;
+  font-family:  'Raleway', sans-serif;
+  text-align: center;
+  padding: 10px;
+  text-decoration: underline overline dotted green; 
+  letter-spacing: 4px; 
+}
+p {
+  color: red;
+  font-family: -apple-system, BlinkMacSystemFont, 'Raleway', "Nunito", "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  padding: 0 40%;
+  text-align: left;
+}
+input[type="button"]{ 
+  font-family: -apple-system, BlinkMacSystemFont, 'Raleway', "Nunito", "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  width: 100px; 
+  background: #4CAF50; 
+  border: 1px solid #222; 
+  padding: 10px 20px; 
+  color: black; 
+  text-align: center; 
+  text-decoration: none; 
+  display: inline-block; 
+  font-size: 16px; 
+} 
+button{
+  width: 150px; height: 40px;
+  background: #4CAF50; 
+  border: 1px solid #222; 
+  padding: 5px 0; 
+  color: black; 
+  text-align: center; 
+  text-decoration: none; 
+  display: inline-block; 
+  font-size: 16px;
+  margin: auto;
+}
+ol{
+  padding: 0 30%;
+}
+a{
+  color: lightblue;
+  
+  
+  </style>
 	</body>
 	
 
