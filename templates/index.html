@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html>
+  <title> DueLink</title>
 	<head>
-    <!-- <link rel="stylesheet" href="index.css" type="text/css"> -->
-    <br><br><h1>DueLink</h1>
+    <link rel="stylesheet" href="index.css" type="text/css">
+    <!--Nunito: link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet"-->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:500&display=swap" rel="stylesheet">
+    <h1>DueLink</h1>
+    <br>
 	</head>
 	
 	<body>
-    <br><br>Syllabus uploader
+    <br><br>
+    <p><ol>
+      <li>Sign in with your Google account</li>
+      <li>Upload a syllabus file with dates</li>
+      <li>Poof! Check <a href="https://calendar.google.com/calendar/r">your Google calendar</a> for your new events!</li>
+    </ol></p>
+    </p><br><br>
 
-	<input type="file" id="browse" name="fileupload" style="display: none" onChange="Handlechange();"/>
+	<input type="file" id="browse" name="fileupload" style="display:none" onChange="Handlechange();"/>
 	<input type="hidden" id="filename" readonly="true"/>
 
 	<input id='fileid' type='file'></input>
@@ -32,12 +42,13 @@
   <!-- <button><a href="#" onclick="signOut();">Sign out</a></button> -->
 
 
-  <br><br>
+  <!-- <br><br>
   <button id="testCreateEvent">Create test event</button>
+   -->
   
   <br><br>
-  <button id="authorize_button" style="display: none;">Authorize</button>
-  <button id="signout_button" style="display: none;">Sign Out</button>
+  <button id="authorize_button" style="display: none;">Sign in</button>
+  <button id="signout_button" style="display: none;">Sign out</button>
 
   <pre id="content" style="white-space: pre-wrap;"></pre>    
 
@@ -214,9 +225,7 @@
 		  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 		}
 		$(document).ready( function(){
-			
 			$("button").fadeIn(1000);				
-			
 		});
 
   </script>
@@ -264,7 +273,7 @@
         authorizeButton.onclick = handleAuthClick;
         signoutButton.onclick = handleSignoutClick;
       }, function(error) {
-        appendPre(JSON.stringify(error, null, 2));
+        console.log(JSON.stringify(error, null, 2));
       });
     }
 
@@ -306,7 +315,8 @@
     function appendPre(message) {
       var pre = document.getElementById('content');
       var textContent = document.createTextNode(message + '\n');
-      pre.appendChild(textContent);
+      //pre.appendChild(textContent);
+      console.log(textContent);
     }
 
     /**
@@ -333,7 +343,7 @@
             if (!when) {
               when = event.start.date;
             }
-            appendPre(event.summary + ' (' + when + ')')
+            appendPre(event.summary + ' (' + when + ')');
           }
         } else {
           appendPre('No upcoming events found.');

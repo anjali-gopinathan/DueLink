@@ -1,15 +1,41 @@
 
+#root{ 
+  text-align:center; 
+} 
 
-body {
-  background-color: powderblue;
+body { 
+  text-align: center;
+  margin: 5%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Raleway', "Nunito", "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: rgba(7, 7, 7, 0.918);
+  color: rgb(255, 255, 255);
+
 }
 h1 {
-  color: blue;
+  color: rgba(102, 149, 236, 0.836);
+  font-size: 42px;
+  font-family:  'Raleway', sans-serif;
+  text-align: center;
+  padding: 10px;
+  text-decoration: underline overline dotted green; 
+  letter-spacing: 4px; 
 }
 p {
   color: red;
+  font-family: -apple-system, BlinkMacSystemFont, 'Raleway', "Nunito", "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  padding: 0 40%;
+  text-align: left;
 }
 input[type="button"]{ 
+  font-family: -apple-system, BlinkMacSystemFont, 'Raleway', "Nunito", "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   width: 100px; 
   background: #4CAF50; 
   border: 1px solid #222; 
@@ -20,3 +46,21 @@ input[type="button"]{
   display: inline-block; 
   font-size: 16px; 
 } 
+button{
+  width: 150px; height: 40px;
+  background: #4CAF50; 
+  border: 1px solid #222; 
+  padding: 5px 0; 
+  color: black; 
+  text-align: center; 
+  text-decoration: none; 
+  display: inline-block; 
+  font-size: 16px;
+  margin: auto;
+}
+ol{
+  padding: 0 30%;
+}
+a{
+  color: lightblue;
+}
