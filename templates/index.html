@@ -1,13 +1,17 @@
 <!DOCTYPE html>
+
 <html>
 	<head>
-
+    
+    <link rel="stylesheet" href="index.css">
 		
 		<!--Specify Google OAuth's app ID (from cloud.google.com)-->
 		<meta name="google-signin-client_id" content="289076913955-tu6bjvsklq80tb18skfqkq5p04mgeadi.apps.googleusercontent.com">
 		<!-- Our google calendar id (not for sign-in): AIzaSyDcGfUFqweAwG0y1cqUtFVEIWVcDRuZgd4 -->
 		<!-- google calender id: 811360896797-4r0n1814jvhgt5qfpj942mko0do83jla.apps.googleusercontent.com-->
-		<br><br><h1>DueLink</h1>
+    <br><br><h1>DueLink</h1>
+    
+
 	</head>
 	
 	<body><br><br>Syllabus uploader
@@ -178,8 +182,17 @@
 		  console.log('User signed out.');
 		});
 	}
+
+  GMT_OFF = '-07:00'    // PDT/MST/GMT-7
+  // "YYYY-MM-DDTHH:MM:SS±HH:MM". For example, September 15, 2015 at 7 PM PDT is represented by this string: "2015-09-15T19:00:00-07:00".
 	function createEvent() {
-		
+		GCAL = discovery.build('calendar', 'v3',
+    http=creds.authorize(Http()));
+    e = GCAL.events().insert(calendarId='primary',
+    sendNotifications=True, body=EVENT).execute();
+
+    
 	}
+  
 	</script>
 </html>
