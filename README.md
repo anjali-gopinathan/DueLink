@@ -1,5 +1,5 @@
 # DueLink
-Syllabus uploading site, connects to Google Calendar
+Syllabus uploading site, connects to Google Calendar.
 To try out this website:
 1. Ensure you have Python Flask installed (to host the server)
 2. Download and navigate to the repository in your terminal/command prompt
